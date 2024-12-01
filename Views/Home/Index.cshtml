@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Danh sách Tướng";
+    var champions = ViewBag.Champions as List<dynamic>;
+}
+
+<div class="text-center">
+    <h1 class="py-4">Champions</h1>
+    @if (champions != null)
+    {
+        <ul class="w-[1000px] grid grid-cols-5 gap-2">
+            @foreach (var champion in champions)
+            {
+                <li class="text-white relative">
+                    <img class=" cursor-pointer"
+                         src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/@(champion.id)_0.jpg" width="250"/>
+                    <div class="absolute bottom-0 w-full">
+                        <div class="flex flex-col bg-black opacity-80 py-2">
+                            <div>
+                                @champion.name
+                            </div>
+                            <div class="flex justify-center border-t">
+                                @foreach (var tag in champion.tags)
+                                {
+                                    <img src="~/Images/classChamp/@(tag).png" width="52" title="@tag" class="px-2"/>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+
+    }
+    else
+    {
+        <p>Không thể tải dữ liệu từ API.</p>
+    }
+
+</div>

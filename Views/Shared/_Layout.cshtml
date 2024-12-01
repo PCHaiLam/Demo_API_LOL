@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends Champions</title>
+    <link rel="icon" href="~/Images/lol-logo.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="text-white" style="background-image: url('@Url.Content("~/Images/championsBackground.jpg")'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+        <div class="absolute z-10 bg-black opacity-80"></div>
+        <nav class="h-[80px] fixed w-full z-50" style="background-color: #0d0d0d">
+            <div class="uppercase text-white flex justify-around">
+                <img src="@Url.Content("~/Images/lol-logo.png")" alt="League of Legends Logo" width="80" />
+            </div>
+        </nav>
+        <div class="mx-28 z-40 pt-24">
+            @RenderBody()
+        </div>
+    </body>
+</html>
