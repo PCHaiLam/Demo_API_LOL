@@ -21,6 +21,12 @@ namespace Demo_API_LOL.Controllers
 
             return View();
         }
+        //Detail
+        public ActionResult Detail(string id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
         // Hàm lấy data từ API
         public async Task<string> GetJsonFromApi()
         {

@@ -11,10 +11,11 @@
         <div class="absolute z-10 bg-black opacity-80"></div>
         <nav class="h-[80px] fixed w-full z-50" style="background-color: #0d0d0d">
             <div class="uppercase text-white flex justify-around">
-                <img src="@Url.Content("~/Images/lol-logo.png")" alt="League of Legends Logo" width="80" />
+                <img src="@Url.Content("~/Images/lol-logo.png")" alt="League of Legends Logo" width="80" 
+                     class="p-2"/>
             </div>
         </nav>
-        <div class="mx-28 z-40 pt-24">
+        <div class="mx-32 z-40 pt-24">
             @RenderBody()
         </div>
     </body>
