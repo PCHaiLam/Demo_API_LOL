@@ -4920,13 +4920,13 @@ function returnFalse() {
 // (focus and blur are always synchronous in other supported browsers,
 // this just defines when we can count on it).
 function expectSync( elem, type ) {
-	return ( elem === safeActiveElement() ) === ( type === "focus" );
+	return ( elem === safeactiveElement() ) === ( type === "focus" );
 }
 
 // Support: IE <=9 only
 // Accessing document.activeElement can throw unexpectedly
 // https://bugs.jquery.com/ticket/13393
-function safeActiveElement() {
+function safeactiveElement() {
 	try {
 		return document.activeElement;
 	} catch ( err ) { }

@@ -306,7 +306,7 @@
    */
 
 
-  const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed) => {
+  const getNextactiveElement = (list, activeElement, shouldGetNext, isCycleAllowed) => {
     const listLength = list.length;
     let index = list.indexOf(activeElement); // if the element does not exist in the list return an element
     // depending on the direction and if cycle is allowed
@@ -975,7 +975,7 @@
   const DATA_KEY$9 = 'bs.button';
   const EVENT_KEY$a = `.${DATA_KEY$9}`;
   const DATA_API_KEY$6 = '.data-api';
-  const CLASS_NAME_ACTIVE$3 = 'active';
+  const CLASS_NAME_active$3 = 'active';
   const SELECTOR_DATA_TOGGLE$5 = '[data-bs-toggle="button"]';
   const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
   /**
@@ -991,7 +991,7 @@
 
     toggle() {
       // Toggle class and sync the `aria-pressed` attribute with the return value of the `.toggle()` method
-      this._element.setAttribute('aria-pressed', this._element.classList.toggle(CLASS_NAME_ACTIVE$3));
+      this._element.setAttribute('aria-pressed', this._element.classList.toggle(CLASS_NAME_active$3));
     } // Static
 
 
@@ -1261,15 +1261,15 @@
   const EVENT_LOAD_DATA_API$3 = `load${EVENT_KEY$8}${DATA_API_KEY$5}`;
   const EVENT_CLICK_DATA_API$5 = `click${EVENT_KEY$8}${DATA_API_KEY$5}`;
   const CLASS_NAME_CAROUSEL = 'carousel';
-  const CLASS_NAME_ACTIVE$2 = 'active';
+  const CLASS_NAME_active$2 = 'active';
   const CLASS_NAME_SLIDE = 'slide';
   const CLASS_NAME_END = 'carousel-item-end';
   const CLASS_NAME_START = 'carousel-item-start';
   const CLASS_NAME_NEXT = 'carousel-item-next';
   const CLASS_NAME_PREV = 'carousel-item-prev';
-  const SELECTOR_ACTIVE = '.active';
+  const SELECTOR_active = '.active';
   const SELECTOR_ITEM = '.carousel-item';
-  const SELECTOR_ACTIVE_ITEM = SELECTOR_ACTIVE + SELECTOR_ITEM;
+  const SELECTOR_active_ITEM = SELECTOR_active + SELECTOR_ITEM;
   const SELECTOR_ITEM_IMG = '.carousel-item img';
   const SELECTOR_INDICATORS = '.carousel-indicators';
   const SELECTOR_DATA_SLIDE = '[data-bs-slide], [data-bs-slide-to]';
@@ -1388,7 +1388,7 @@
         return;
       }
 
-      const activeIndex = this._getItemIndex(this._getActive());
+      const activeIndex = this._getItemIndex(this._getactive());
 
       if (activeIndex === index) {
         return;
@@ -1480,24 +1480,24 @@
       return this._getItems().indexOf(element);
     }
 
-    _setActiveIndicatorElement(index) {
+    _setactiveIndicatorElement(index) {
       if (!this._indicatorsElement) {
         return;
       }
 
-      const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE, this._indicatorsElement);
-      activeIndicator.classList.remove(CLASS_NAME_ACTIVE$2);
+      const activeIndicator = SelectorEngine.findOne(SELECTOR_active, this._indicatorsElement);
+      activeIndicator.classList.remove(CLASS_NAME_active$2);
       activeIndicator.removeAttribute('aria-current');
-      const newActiveIndicator = SelectorEngine.findOne(`[data-bs-slide-to="${index}"]`, this._indicatorsElement);
+      const newactiveIndicator = SelectorEngine.findOne(`[data-bs-slide-to="${index}"]`, this._indicatorsElement);
 
-      if (newActiveIndicator) {
-        newActiveIndicator.classList.add(CLASS_NAME_ACTIVE$2);
-        newActiveIndicator.setAttribute('aria-current', 'true');
+      if (newactiveIndicator) {
+        newactiveIndicator.classList.add(CLASS_NAME_active$2);
+        newactiveIndicator.setAttribute('aria-current', 'true');
       }
     }
 
     _updateInterval() {
-      const element = this._activeElement || this._getActive();
+      const element = this._activeElement || this._getactive();
 
       if (!element) {
         return;
@@ -1512,10 +1512,10 @@
         return;
       }
 
-      const activeElement = this._getActive();
+      const activeElement = this._getactive();
 
       const isNext = order === ORDER_NEXT;
-      const nextElement = element || getNextActiveElement(this._getItems(), activeElement, isNext, this._config.wrap);
+      const nextElement = element || getNextactiveElement(this._getItems(), activeElement, isNext, this._config.wrap);
 
       if (nextElement === activeElement) {
         return;
@@ -1548,7 +1548,7 @@
       this.pause();
       this._isSliding = true;
 
-      this._setActiveIndicatorElement(nextElementIndex);
+      this._setactiveIndicatorElement(nextElementIndex);
 
       this._activeElement = nextElement;
       const directionalClassName = isNext ? CLASS_NAME_START : CLASS_NAME_END;
@@ -1560,8 +1560,8 @@
 
       const completeCallBack = () => {
         nextElement.classList.remove(directionalClassName, orderClassName);
-        nextElement.classList.add(CLASS_NAME_ACTIVE$2);
-        activeElement.classList.remove(CLASS_NAME_ACTIVE$2, orderClassName, directionalClassName);
+        nextElement.classList.add(CLASS_NAME_active$2);
+        activeElement.classList.remove(CLASS_NAME_active$2, orderClassName, directionalClassName);
         this._isSliding = false;
         triggerEvent(EVENT_SLID);
       };
@@ -1577,8 +1577,8 @@
       return this._element.classList.contains(CLASS_NAME_SLIDE);
     }
 
-    _getActive() {
-      return SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
+    _getactive() {
+      return SelectorEngine.findOne(SELECTOR_active_ITEM, this._element);
     }
 
     _getItems() {
@@ -1705,7 +1705,7 @@
   const CLASS_NAME_HORIZONTAL = 'collapse-horizontal';
   const WIDTH = 'width';
   const HEIGHT = 'height';
-  const SELECTOR_ACTIVES = '.collapse.show, .collapse.collapsing';
+  const SELECTOR_activeS = '.collapse.show, .collapse.collapsing';
   const SELECTOR_DATA_TOGGLE$4 = '[data-bs-toggle="collapse"]';
   const Default$a = {
     parent: null,
@@ -1776,7 +1776,7 @@
       let activeChildren = []; // find active children
 
       if (this._config.parent) {
-        activeChildren = this._getFirstLevelChildren(SELECTOR_ACTIVES).filter(element => element !== this._element).map(element => Collapse.getOrCreateInstance(element, {
+        activeChildren = this._getFirstLevelChildren(SELECTOR_activeS).filter(element => element !== this._element).map(element => Collapse.getOrCreateInstance(element, {
           toggle: false
         }));
       }
@@ -4131,7 +4131,7 @@
       // allow cycling to get the last item in case key equals ARROW_UP_KEY
 
 
-      getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
+      getNextactiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
     } // Static
 
 
@@ -4546,7 +4546,7 @@
     constructor(config) {
       super();
       this._config = this._getConfig(config);
-      this._isActive = false;
+      this._isactive = false;
       this._lastTabNavDirection = null;
     } // Getters
 
@@ -4565,7 +4565,7 @@
 
 
     activate() {
-      if (this._isActive) {
+      if (this._isactive) {
         return;
       }
 
@@ -4577,15 +4577,15 @@
 
       EventHandler.on(document, EVENT_FOCUSIN$2, event => this._handleFocusin(event));
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
-      this._isActive = true;
+      this._isactive = true;
     }
 
     deactivate() {
-      if (!this._isActive) {
+      if (!this._isactive) {
         return;
       }
 
-      this._isActive = false;
+      this._isactive = false;
       EventHandler.off(document, EVENT_KEY$5);
     } // Private
 
@@ -5781,7 +5781,7 @@
       this._isHovered = null; // it is a trick to support manual triggering
 
       const complete = () => {
-        if (this._isWithActiveTrigger()) {
+        if (this._isWithactiveTrigger()) {
           return;
         }
 
@@ -6022,7 +6022,7 @@
     }
 
     _leave() {
-      if (this._isWithActiveTrigger()) {
+      if (this._isWithactiveTrigger()) {
         return;
       }
 
@@ -6040,7 +6040,7 @@
       this._timeout = setTimeout(handler, timeout);
     }
 
-    _isWithActiveTrigger() {
+    _isWithactiveTrigger() {
       return Object.values(this._activeTrigger).includes(true);
     }
 
@@ -6241,7 +6241,7 @@
   const EVENT_CLICK = `click${EVENT_KEY$2}`;
   const EVENT_LOAD_DATA_API$1 = `load${EVENT_KEY$2}${DATA_API_KEY}`;
   const CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item';
-  const CLASS_NAME_ACTIVE$1 = 'active';
+  const CLASS_NAME_active$1 = 'active';
   const SELECTOR_DATA_SPY = '[data-bs-spy="scroll"]';
   const SELECTOR_TARGET_LINKS = '[href]';
   const SELECTOR_NAV_LIST_GROUP = '.nav, .list-group';
@@ -6393,7 +6393,7 @@
         if (!entry.isIntersecting) {
           this._activeTarget = null;
 
-          this._clearActiveClass(targetElement(entry));
+          this._clearactiveClass(targetElement(entry));
 
           continue;
         }
@@ -6443,10 +6443,10 @@
         return;
       }
 
-      this._clearActiveClass(this._config.target);
+      this._clearactiveClass(this._config.target);
 
       this._activeTarget = target;
-      target.classList.add(CLASS_NAME_ACTIVE$1);
+      target.classList.add(CLASS_NAME_active$1);
 
       this._activateParents(target);
 
@@ -6458,7 +6458,7 @@
     _activateParents(target) {
       // Activate dropdown parents
       if (target.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
-        SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, target.closest(SELECTOR_DROPDOWN)).classList.add(CLASS_NAME_ACTIVE$1);
+        SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, target.closest(SELECTOR_DROPDOWN)).classList.add(CLASS_NAME_active$1);
         return;
       }
 
@@ -6466,17 +6466,17 @@
         // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
         for (const item of SelectorEngine.prev(listGroup, SELECTOR_LINK_ITEMS)) {
-          item.classList.add(CLASS_NAME_ACTIVE$1);
+          item.classList.add(CLASS_NAME_active$1);
         }
       }
     }
 
-    _clearActiveClass(parent) {
-      parent.classList.remove(CLASS_NAME_ACTIVE$1);
-      const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE$1}`, parent);
+    _clearactiveClass(parent) {
+      parent.classList.remove(CLASS_NAME_active$1);
+      const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_active$1}`, parent);
 
       for (const node of activeNodes) {
-        node.classList.remove(CLASS_NAME_ACTIVE$1);
+        node.classList.remove(CLASS_NAME_active$1);
       }
     } // Static
 
@@ -6538,7 +6538,7 @@
   const ARROW_RIGHT_KEY = 'ArrowRight';
   const ARROW_UP_KEY = 'ArrowUp';
   const ARROW_DOWN_KEY = 'ArrowDown';
-  const CLASS_NAME_ACTIVE = 'active';
+  const CLASS_NAME_active = 'active';
   const CLASS_NAME_FADE$1 = 'fade';
   const CLASS_NAME_SHOW$1 = 'show';
   const CLASS_DROPDOWN = 'dropdown';
@@ -6551,7 +6551,7 @@
   const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]'; // todo:v6: could be only `tab`
 
   const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`;
-  const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="list"]`;
+  const SELECTOR_DATA_TOGGLE_active = `.${CLASS_NAME_active}[data-bs-toggle="tab"], .${CLASS_NAME_active}[data-bs-toggle="pill"], .${CLASS_NAME_active}[data-bs-toggle="list"]`;
   /**
    * Class definition
    */
@@ -6582,12 +6582,12 @@
       // Shows this elem and deactivate the active sibling if exists
       const innerElem = this._element;
 
-      if (this._elemIsActive(innerElem)) {
+      if (this._elemIsactive(innerElem)) {
         return;
       } // Search for active tab on same parent to deactivate it
 
 
-      const active = this._getActiveElem();
+      const active = this._getactiveElem();
 
       const hideEvent = active ? EventHandler.trigger(active, EVENT_HIDE$1, {
         relatedTarget: innerElem
@@ -6611,7 +6611,7 @@
         return;
       }
 
-      element.classList.add(CLASS_NAME_ACTIVE);
+      element.classList.add(CLASS_NAME_active);
 
       this._activate(getElementFromSelector(element)); // Search and activate/show the proper section
 
@@ -6640,7 +6640,7 @@
         return;
       }
 
-      element.classList.remove(CLASS_NAME_ACTIVE);
+      element.classList.remove(CLASS_NAME_active);
       element.blur();
 
       this._deactivate(getElementFromSelector(element)); // Search and deactivate the shown section too
@@ -6674,13 +6674,13 @@
 
       event.preventDefault();
       const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
-      const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
+      const nextactiveElement = getNextactiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
 
-      if (nextActiveElement) {
-        nextActiveElement.focus({
+      if (nextactiveElement) {
+        nextactiveElement.focus({
           preventScroll: true
         });
-        Tab.getOrCreateInstance(nextActiveElement).show();
+        Tab.getOrCreateInstance(nextactiveElement).show();
       }
     }
 
@@ -6689,8 +6689,8 @@
       return SelectorEngine.find(SELECTOR_INNER_ELEM, this._parent);
     }
 
-    _getActiveElem() {
-      return this._getChildren().find(child => this._elemIsActive(child)) || null;
+    _getactiveElem() {
+      return this._getChildren().find(child => this._elemIsactive(child)) || null;
     }
 
     _setInitialAttributes(parent, children) {
@@ -6704,17 +6704,17 @@
     _setInitialAttributesOnChild(child) {
       child = this._getInnerElement(child);
 
-      const isActive = this._elemIsActive(child);
+      const isactive = this._elemIsactive(child);
 
       const outerElem = this._getOuterElement(child);
 
-      child.setAttribute('aria-selected', isActive);
+      child.setAttribute('aria-selected', isactive);
 
       if (outerElem !== child) {
         this._setAttributeIfNotExists(outerElem, 'role', 'presentation');
       }
 
-      if (!isActive) {
+      if (!isactive) {
         child.setAttribute('tabindex', '-1');
       }
 
@@ -6753,7 +6753,7 @@
         }
       };
 
-      toggle(SELECTOR_DROPDOWN_TOGGLE, CLASS_NAME_ACTIVE);
+      toggle(SELECTOR_DROPDOWN_TOGGLE, CLASS_NAME_active);
       toggle(SELECTOR_DROPDOWN_MENU, CLASS_NAME_SHOW$1);
       outerElem.setAttribute('aria-expanded', open);
     }
@@ -6764,8 +6764,8 @@
       }
     }
 
-    _elemIsActive(elem) {
-      return elem.classList.contains(CLASS_NAME_ACTIVE);
+    _elemIsactive(elem) {
+      return elem.classList.contains(CLASS_NAME_active);
     } // Try to get the inner element (usually the .nav-link)
 
 
@@ -6817,7 +6817,7 @@
    */
 
   EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
-    for (const element of SelectorEngine.find(SELECTOR_DATA_TOGGLE_ACTIVE)) {
+    for (const element of SelectorEngine.find(SELECTOR_DATA_TOGGLE_active)) {
       Tab.getOrCreateInstance(element);
     }
   });

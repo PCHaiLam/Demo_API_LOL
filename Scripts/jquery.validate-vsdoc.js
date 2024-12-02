@@ -267,7 +267,7 @@ $.extend($.validator, {
 		ignore: [],
 		ignoreTitle: false,
 		onfocusin: function(element) {
-			this.lastActive = element;
+			this.lastactive = element;
 				
 			// hide error label and remove error class on focus if enabled
 			if ( this.settings.focusCleanup && !this.blockFocusCleanup ) {
@@ -508,10 +508,10 @@ $.extend($.validator, {
 		focusInvalid: function() {
 			if( this.settings.focusInvalid ) {
 				try {
-					$(this.findLastActive() || this.errorList.length && this.errorList[0].element || [])
+					$(this.findLastactive() || this.errorList.length && this.errorList[0].element || [])
 					.filter(":visible")
 					.focus()
-					// manually trigger focusin event; without it, focusin handler isn't called, findLastActive won't have anything to find
+					// manually trigger focusin event; without it, focusin handler isn't called, findLastactive won't have anything to find
 					.trigger("focusin");
 				} catch(e) {
 					// ignore IE throwing errors when focusing hidden elements
@@ -519,11 +519,11 @@ $.extend($.validator, {
 			}
 		},
 		
-		findLastActive: function() {
-			var lastActive = this.lastActive;
-			return lastActive && $.grep(this.errorList, function(n) {
-				return n.element.name == lastActive.name;
-			}).length == 1 && lastActive;
+		findLastactive: function() {
+			var lastactive = this.lastactive;
+			return lastactive && $.grep(this.errorList, function(n) {
+				return n.element.name == lastactive.name;
+			}).length == 1 && lastactive;
 		},
 		
 		elements: function() {
