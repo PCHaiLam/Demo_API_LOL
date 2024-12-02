@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "League of Legends Champions";
+    var champions = ViewBag.Champions as List<dynamic>;
+}
+
+<div class="mx-32 text-center text-white relative">
+    <h1 class="py-4">Champions</h1>
+    @if (champions != null)
+    {
+        <ul class="grid grid-cols-5 gap-4">
+            @foreach (var champion in champions)
+            {
+                <li class="relative">
+                    <a class="text-white cursor-pointer" href="@Url.Action("Detail", "Home", new { id = champion.id })">
+                        <img class="w-full"
+                             src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/@(champion.id)_0.jpg" />
+                        <div class="absolute bottom-0 w-full">
+                            <div class="grid grid-cols-1 bg-black opacity-80 py-2">
+                                <div>
+                                    @champion.name
+                                </div>
+                                <div class="flex justify-center border-t ">
+                                    @foreach (var tag in champion.tags)
+                                    {
+                                        <img src="~/Images/classChamp/@(tag).png" width="52" title="@tag" class="px-2" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+            }
+        </ul>
+    }
+    else
+    {
+        <p>Không thể tải dữ liệu từ API.</p>
+    }
+</div>

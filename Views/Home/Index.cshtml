@@ -3,23 +3,29 @@
     var champions = ViewBag.Champions as List<dynamic>;
 }
 
-<div class="mx-32 text-center text-white relative">
-    <h1 class="py-4">Champions</h1>
+<div class="mx-4 sm:mx-12 md:mx-16 lg:mx-32 min-h-screen text-center text-white relative">
+    <h1 class="py-4 text-2xl sm:text-3xl lg:text-4xl">Champions</h1>
+
+    <div class="mb-4">
+        <input id="searchBox" type="text" class="text-center px-4 py-2 rounded-lg border bg-black text-white opacity-70 placeholder-white"
+               placeholder="Tìm kiếm tướng..." onkeyup="filterChampions()" />
+    </div>
+
     @if (champions != null)
     {
-        <ul class="grid grid-cols-5 gap-4">
+        <ul id="championList" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             @foreach (var champion in champions)
             {
-                <li class="relative">
+                <li class="champion-item relative" data-name="@champion.name">
                     <a class="text-white cursor-pointer" href="@Url.Action("Detail", "Home", new { id = champion.id })">
-                        <img class="w-full"
+                        <img class="w-full rounded-lg shadow-lg"
                              src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/@(champion.id)_0.jpg" />
                         <div class="absolute bottom-0 w-full">
                             <div class="grid grid-cols-1 bg-black opacity-80 py-2">
-                                <div>
+                                <div class="text-lg font-semibold text-center">
                                     @champion.name
                                 </div>
-                                <div class="flex justify-center border-t ">
+                                <div class="flex justify-center border-t py-2">
                                     @foreach (var tag in champion.tags)
                                     {
                                         <img src="~/Images/classChamp/@(tag).png" width="52" title="@tag" class="px-2" />
@@ -29,7 +35,6 @@
                         </div>
                     </a>
                 </li>
-
             }
         </ul>
     }
@@ -38,3 +43,19 @@
         <p>Không thể tải dữ liệu từ API.</p>
     }
 </div>
+
+<script>
+    function filterChampions() {
+        var searchQuery = document.getElementById("searchBox").value.toLowerCase();
+        var champions = document.querySelectorAll(".champion-item");
+
+        champions.forEach(function(champion) {
+            var championName = champion.getAttribute("data-name").toLowerCase();
+            if (championName.includes(searchQuery)) {
+                champion.style.display = "block";  // Hiển thị phần tử
+            } else {
+                champion.style.display = "none";  // Ẩn phần tử
+            }
+        });
+    }
+</script>
