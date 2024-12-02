@@ -6,17 +6,22 @@
     <title>League of Legends Champions</title>
     <link rel="icon" href="~/Images/lol-logo.png" type="image/x-icon" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link href="https://db.onlinewebfonts.com/c/7d5bdb38da748fe15065cfaee19080c5?family=Beaufort-Regular" rel="stylesheet">
+    <link href="https://db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=Beaufort+for+LOL+Bold" rel="stylesheet">
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
-<body class="text-white" style="background-image: url('@Url.Content("~/Images/championsBackground.jpg")'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-        <div class="absolute z-10 bg-black opacity-80"></div>
+<body class="text-white relative" style="background-image: url('@Url.Content("~/Images/championsBackground.jpg")'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+        <div class="absolute z-0 w-full h-full bg-black opacity-80"></div>
         <nav class="h-[80px] fixed w-full z-50" style="background-color: #0d0d0d">
-            <div class="uppercase text-white flex justify-around">
+            <a href="@Url.Action("Index", "Home")" class="uppercase text-white flex justify-around">
                 <img src="@Url.Content("~/Images/lol-logo.png")" alt="League of Legends Logo" width="80" 
                      class="p-2"/>
-            </div>
+            </a>
         </nav>
-        <div class="mx-32 z-40 pt-24">
+        <div class="z-50 pt-20">
             @RenderBody()
         </div>
-    </body>
+</body>
 </html>

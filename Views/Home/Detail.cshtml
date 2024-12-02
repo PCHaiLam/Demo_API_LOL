@@ -1,8 +1,161 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Detail";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var champion = ViewBag.Champion;
+
+    var difficulty = champion.info.difficulty;
+    var nameDifficulty = "";
+    if(difficulty >=0 && difficulty <=3) {
+        difficulty = "Dễ";
+        nameDifficulty = "low.svg";
+    } else if(difficulty >=4 && difficulty <=7) {
+        difficulty = "Trung bình";
+        nameDifficulty = "med.svg";
+    } else {
+        difficulty = "Khó";
+        nameDifficulty = "high.svg";
+    }
+
+    string champKey = champion.key.ToString().PadLeft(4, '0');
+    var keys = new[] { "P", "Q", "W", "E", "R" };
 }
 
-<h2>Detail @ViewBag.Id</h2>
+<div class="text-white relative"style=" font-family: 'Beaufort for LOL Bold', sans-serif;">
+    @if (champion != null)
+    {
+        <div class="min-h-screen relative">
+            <!-- Hình nền -->
+            <img class="w-full" src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/@(champion.id)_0.jpg" alt="@champion.name" />
+            <div class="absolute w-4/5 h-full left-0 top-0" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);"></div>
 
+            <!-- Nội dung -->
+            <div class="absolute w-full px-12 top-0 h-screen">
+                <div class="h-full flex flex-col justify-around transform text-white">
+                    <div></div>
+                    <div class="w-1/2">
+                        <h2 class="text-3xl uppercase italic" style="color: #c8aa6e;">@champion.title</h2>
+                        <h3 class="text-7xl uppercase italic">@champion.name</h3>
+                        <p class="mt-4 text-xl" style="font-family: 'Beaufort-Regular'">@champion.lore</p>
+                    </div>
+
+                    <!-- Thêm nội dung khác -->
+                    <div class="flex gap-3 uppercase text-center">
+                        <div class="border-2" style="width: 155px; height: 155px">
+                            <div class="p-4 h-full w-full" style="background-color: #0a1428; opacity: 0.7">
+                                <div class="flex justify-around">
+                                    @foreach (var tag in champion.tags)
+                                    {
+                                        <img src="~/Images/classChamp/@(tag).png" width="36" title="@tag"/>
+                                    }
+                                </div>
+                                <div class="mt-2">
+                                    <p>vai trò</p>
+                                    <p style="color: #c8aa6e ">
+                                        @foreach (var tag in champion.tags)
+                                        {
+                                            <span>@tag</span>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-2" style="width: 155px; height: 155px">
+                            <div class="p-4 h-full w-full" style="background-color: #0a1428; opacity: 0.7">
+                                <div class="flex justify-around" style="color: #c8aa6e; height:36px">
+                                    <img src="~/Images/difficulty/@nameDifficulty"/>
+                                </div>
+                                <div class="mt-2">
+                                    <p>độ khó</p>
+                                    <p style="color: #c8aa6e ">@difficulty</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                <div class="h-12 ">
+                    <hr class="w-1/2 "/>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="min-h-screen py-12" style="background-color: #0a1428">
+            <div class="px-12 min-h-screen grid grid-cols-2 gap-5">
+                <div class="w-full flex flex-col justify-center uppercase">
+                    <h1 class="text-7xl text-center h-32 italic">kỹ năng</h1>
+                    <div class="flex justify-center gap-2" style="font-family: 'Beaufort-Regular' ">
+                        <div id="passive" class="active spell flex flex-col items-center transition-all hover:opacity-100 cursor-pointer" style="width: 120px" onclick="activateSpell(this)" data-key="P">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/11.16.1/img/passive/@(champion.passive.image.full)" width="80" alt="@champion.passive.name" />
+                            <p class="mt-4 text-center">@champion.passive.name</p>
+                            <input class="hidden" value="@(keys[0])" />
+                        </div>
+                        @for (var i = 0; i < champion.spells.Count; i++)
+                        {
+                            var spell = champion.spells[i];
+                            <div id="spell-@(i)" class="spell flex flex-col items-center transition-all hover:opacity-100 cursor-pointer" style="width: 120px" onclick="activateSpell(this)" data-key="@(keys[i+1])">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/11.16.1/img/spell/@(spell.image.full)" width="80" alt="@spell.name" />
+                                <p class="mt-4 text-center">@spell.name</p>
+                                <input class="hidden" value="@(keys[i+1])" />
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="">
+                    <div class="w-full h-[490px] border mb-4">
+                        <video id="video" autoplay muted loop playsinline class="h-[490px] w-full p-5">
+                            <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/@champKey/ability_@(champKey)_P1.mp4" type="video/mp4">
+                            <source src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/@champKey/ability_@(champKey)_P1.webm" type="video/webm">
+                        </video>
+                    </div>
+                    <div class="text-center ">
+                        <div id="passive-info" class="mt-5">
+                            <p>@champion.passive.name</p>
+                            <p>@keys[0]</p>
+                            <p>@champion.passive.description</p>
+                        </div>
+                        @for (var i = 0; i < champion.spells.Count; i++)
+                        {
+                            var spell = champion.spells[i];
+                            <div id="spell-info-@i" class="mt-5 hidden">
+                                <p class="mt-4 text-center">@spell.name</p>
+                                <p>@keys[i+1]</p>
+                                <p>@spell.description</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <p>Không thể tải dữ liệu từ API.</p>
+    }
+</div>
+
+<script>
+    function activateSpell(element) {
+        // Xóa lớp 'active' và ẩn tất cả các thông tin
+        document.querySelectorAll('.spell').forEach(spell => spell.classList.remove('active'));
+        document.querySelectorAll('[id^="spell-info"], #passive-info').forEach(info => info.classList.add('hidden'));
+
+        // Thêm lớp 'active' cho phần tử được nhấp
+        element.classList.add('active');
+
+        // Lấy giá trị 'key' từ thuộc tính data-key của phần tử đã nhấp
+        var key = element.getAttribute('data-key');
+
+        // Hiển thị thông tin tương ứng
+        if (key === "P") {
+            document.getElementById('passive-info').classList.remove('hidden');
+        } else {
+            // Lấy index của spell từ id
+            var spellIndex = element.id.split('-')[1];
+            document.getElementById('spell-info-' + spellIndex).classList.remove('hidden');
+        }
+
+        // Thay đổi video dựa trên giá trị key
+        var videoSrc = "https://d28xe8vt774jo5.cloudfront.net/champion-abilities/@champKey/ability_@(champKey)_" + key + "1.mp4";
+        document.getElementById('video').querySelector('source').src = videoSrc;
+        document.getElementById('video').load();  // Tải lại video
+    }
+</script>

@@ -9,61 +9,23 @@ namespace Demo_API_LOL.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string apiUrl = "https://ddragon.leagueoflegends.com/cdn/14.23.1/data/vi_VN/champion.json";
+        private readonly string apiChampionsUrl = "https://ddragon.leagueoflegends.com/cdn/14.23.1/data/vi_VN/champion.json";
 
         public async Task<ActionResult> Index()
         {
-            var jsonContent = await GetJsonFromApi();
             var championsList = await GetChampionsListFromApi();
 
             ViewBag.Champions = championsList;
-            ViewBag.JsonContent = jsonContent;
-
             return View();
         }
-        //Detail
-        public ActionResult Detail(string id)
-        {
-            ViewBag.Id = id;
-            return View();
-        }
-        // Hàm lấy data từ API
-        public async Task<string> GetJsonFromApi()
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                try
-                {
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
-                    response.EnsureSuccessStatusCode();
-
-                    var responseData = await response.Content.ReadAsStringAsync();
-
-                    var data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(responseData);
-
-                    if(data.ContainsKey("data"))
-                    {
-                        var champions = JsonConvert.SerializeObject(data["data"], Formatting.Indented);
-                        return champions;
-                    }
-
-                    return null;
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.ErrorMessage = ex.Message;
-                    return null;
-                }
-            }
-        }
-        //hàm lấy thông tin chi tiết của 1 tướng
+        //hàm lấy danh sách tướng tướng
         public async Task<List<dynamic>> GetChampionsListFromApi()
         {
             using (HttpClient client = new HttpClient())
             {
                 try
                 {
-                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+                    HttpResponseMessage response = await client.GetAsync(apiChampionsUrl);
                     response.EnsureSuccessStatusCode();
 
                     var responseData = await response.Content.ReadAsStringAsync();
@@ -81,6 +43,45 @@ namespace Demo_API_LOL.Controllers
                         }
 
                         return championsDetail;
+                    }
+
+                    return null;
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = ex.Message;
+                    return null;
+                }
+            }
+        }
+        
+        //Detail
+        public async Task<ActionResult> Detail(string id)
+        {
+            var champion = await GetChampionFromIdWithAPI(id);
+
+            ViewBag.Champion = champion;
+            return View();
+        }
+        // Hàm lấy data từ API
+        public async Task<dynamic> GetChampionFromIdWithAPI(string id)
+        {
+            string apiChampionUrl = "https://ddragon.leagueoflegends.com/cdn/14.23.1/data/vi_VN/champion/" + id + ".json";
+
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(apiChampionUrl);
+                    response.EnsureSuccessStatusCode();
+
+                    var responseData = await response.Content.ReadAsStringAsync();
+
+                    var data = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(responseData);
+
+                    if (data.ContainsKey("data") && data["data"].ContainsKey(id))
+                    {
+                        return data["data"][id];
                     }
 
                     return null;
