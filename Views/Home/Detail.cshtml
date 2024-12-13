@@ -28,23 +28,22 @@
     @if (champion != null)
     {
         <div class="min-h-screen relative">
-            <!-- Hình nền -->
-            <img class="w-full object-cover" src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/@(champion.id)_0.jpg" alt="@champion.name" />
+            <!-- Background Image -->
+            <img class="w-full h-screen object-cover" src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/@(champion.id)_0.jpg" alt="@champion.name" />
             <div class="absolute w-full h-full left-0 top-0" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);"></div>
 
-            <!-- Nội dung -->
-            <div class="absolute w-full px-4 sm:px-12 top-0 h-screen">
-                <div class="h-full flex flex-col justify-around transform text-white">
-                    <div></div>
-                    <div class="w-full sm:w-1/2">
-                        <h2 class="text-3xl uppercase italic" style="color: #c8aa6e;">@champion.title</h2>
-                        <h3 class="text-4xl sm:text-7xl uppercase italic">@champion.name</h3>
-                        <p class="mt-4 text-base sm:text-xl" style="font-family: 'Beaufort-Regular'">@champion.lore</p>
+            <!-- Content -->
+            <div class="absolute w-full px-4 md:px-12 top-0 h-screen flex items-center">
+                <div class="w-full">
+                    <div class="w-full lg:w-1/2">
+                        <h2 class="text-2xl md:text-3xl uppercase italic" style="color: #c8aa6e;">@champion.title</h2>
+                        <h3 class="text-4xl md:text-7xl uppercase italic">@champion.name</h3>
+                        <p class="mt-4 text-base md:text-xl" style="font-family: 'Beaufort-Regular'">@champion.lore</p>
                     </div>
 
-                    <!-- Thêm nội dung khác -->
-                    <div class="flex flex-wrap gap-3 sm:gap-5 uppercase text-center">
-                        <div class="border-2 w-32 sm:w-40 h-40">
+                    <!-- Champion Info Cards -->
+                    <div class="flex flex-wrap gap-3 md:gap-5 uppercase text-center mt-6">
+                        <div class="border-2 w-32 md:w-40 h-40">
                             <div class="p-4 h-full w-full" style="background-color: #0a1428; opacity: 0.7">
                                 <div class="flex justify-around">
                                     @foreach (var tag in champion.tags)
@@ -63,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="border-2 w-32 sm:w-40 h-40">
+                        <div class="border-2 w-32 md:w-40 h-40">
                             <div class="p-4 h-full w-full" style="background-color: #0a1428; opacity: 0.7">
                                 <div class="flex justify-around" style="color: #c8aa6e; height:36px">
                                     <img src="~/Images/difficulty/@nameDifficulty" />
@@ -75,53 +74,53 @@
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
 
+        <!-- Skills Section -->
         <section class="min-h-screen py-12" style="background-color: #0a1428">
-            <div class="px-4 sm:px-12 min-h-screen grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="px-4 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div class="w-full flex flex-col justify-center uppercase">
-                    <h1 class="text-5xl sm:text-7xl text-center h-32 italic">kỹ năng</h1>
-                    <div class="flex justify-center gap-2" style="font-family: 'Beaufort-Regular' ">
-                        <div id="passive" class="active-spell spell flex flex-col items-center cursor-pointer" style="width: 120px" onclick="activateSpell(this)" data-key="P">
-                            <img src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/passive/@(champion.passive.image.full)" width="80" alt="@champion.passive.name" />
-                            <p class="mt-4 text-center">@champion.passive.name</p>
+                    <h1 class="text-4xl md:text-7xl text-center mb-8 italic">kỹ năng</h1>
+                    <div class="flex flex-wrap justify-center gap-4" style="font-family: 'Beaufort-Regular'">
+                        <div id="passive" class="active-spell spell flex flex-col items-center cursor-pointer w-24 md:w-32" onclick="activateSpell(this)" data-key="P">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/passive/@(champion.passive.image.full)" class="w-20 md:w-full" alt="@champion.passive.name" />
+                            <p class="mt-2 text-center text-sm md:text-base">@champion.passive.name</p>
                             <input class="hidden" value="@(keys[0])" />
                         </div>
                         @for (var i = 0; i < champion.spells.Count; i++)
                         {
                             var spell = champion.spells[i];
-                            <div id="spell-@(i)" class="spell flex flex-col items-center cursor-pointer" style="width: 120px" onclick="activateSpell(this)" data-key="@(keys[i+1])">
-                                <img src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/spell/@(spell.image.full)" width="80" alt="@spell.name" />
-                                <p class="mt-4 text-center">@spell.name</p>
+                            <div id="spell-@(i)" class="spell flex flex-col items-center cursor-pointer w-24 md:w-32" onclick="activateSpell(this)" data-key="@(keys[i+1])">
+                                <img src="https://ddragon.leagueoflegends.com/cdn/14.23.1/img/spell/@(spell.image.full)" class="w-20 md:w-full" alt="@spell.name" />
+                                <p class="mt-2 text-center text-sm md:text-base">@spell.name</p>
                                 <input class="hidden" value="@(keys[i+1])" />
                             </div>
                         }
                     </div>
                 </div>
                 <div class="w-full">
-                    <div class="w-full h-[490px] border mb-4">
-                        <video id="video" autoplay muted loop playsinline class="h-[490px] w-full p-5">
+                    <div class="w-full h-auto md:h-[490px] border mb-4">
+                        <video id="video" autoplay muted loop playsinline class="w-full h-auto md:h-[490px] p-2 md:p-5">
                             <source id="videoSource1" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/@champKey/ability_@(champKey)_P1.mp4" type="video/mp4">
                             <source id="videoSource2" src="https://d28xe8vt774jo5.cloudfront.net/champion-abilities/@champKey/ability_@(champKey)_P1.webm" type="video/webm">
                         </video>
                     </div>
 
-                    <div class="text-center mt-8">
+                    <div class="text-center mt-4 md:mt-8">
                         <div id="passive-info">
-                            <p class="uppercase text-3xl italic mb-4">@champion.passive.name</p>
-                            <p class="opacity-50 uppercase mb-4">Nội tại</p>
-                            <p class="text-lg" style="font-family: 'Beaufort-Regular' ">@Html.Raw(champion.passive.description)</p>
+                            <p class="uppercase text-2xl md:text-3xl italic mb-2 md:mb-4">@champion.passive.name</p>
+                            <p class="opacity-50 uppercase mb-2 md:mb-4">Nội tại</p>
+                            <p class="text-base md:text-lg" style="font-family: 'Beaufort-Regular'">@Html.Raw(champion.passive.description)</p>
                         </div>
                         @for (var i = 0; i < champion.spells.Count; i++)
                         {
                             var spell = champion.spells[i];
                             <div id="spell-info-@i" class="hidden">
-                                <p class="uppercase text-3xl italic mb-4">@spell.name</p>
-                                <p class="opacity-50 uppercase mb-4">@keys[i + 1]</p>
-                                <div class="text-lg" style="font-family: 'Beaufort-Regular' ">@Html.Raw(spell.description)</div>
+                                <p class="uppercase text-2xl md:text-3xl italic mb-2 md:mb-4">@spell.name</p>
+                                <p class="opacity-50 uppercase mb-2 md:mb-4">@keys[i + 1]</p>
+                                <div class="text-base md:text-lg" style="font-family: 'Beaufort-Regular'">@Html.Raw(spell.description)</div>
                             </div>
                         }
                     </div>
@@ -129,24 +128,25 @@
             </div>
         </section>
 
-        <section class="max-h py-12 text-black" style="background-color: white">
-            <div class="px-4 sm:px-12">
-                <h1 class="uppercase text-4xl italic mb-5">trang phục</h1>
+        <!-- Skins Section -->
+        <section class="py-12 text-black" style="background-color: white">
+            <div class="px-4 md:px-12">
+                <h1 class="uppercase text-3xl md:text-4xl italic mb-5">trang phục</h1>
                 <div class="w-full mb-5">
                     <img id="main-skin" class="w-full" src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/@(champion.id)_0.jpg" alt="@champion.name" />
                 </div>
             </div>
 
-            <div class="overflow-scroll w-4/5 mx-auto overflow-y-hidden">
-                <ul class="flex gap-8 w-max">
+            <div class="overflow-x-auto w-11/12 md:w-4/5 mx-auto">
+                <ul class="flex gap-4 md:gap-8 w-max">
                     @foreach (var skin in champion.skins)
                     {
                         var isActive = skin.name == "default" ? "active-skin" : "";
-                        <li class="skin-item w-[212px] cursor-pointer @(isActive)" onclick="changeSkinImage(this, '@(champion.id)', @(skin.num))">
-                            <div class="border-2 mb-5 w-full">
+                        <li class="skin-item w-40 md:w-[212px] cursor-pointer @(isActive)" onclick="changeSkinImage(this, '@(champion.id)', @(skin.num))">
+                            <div class="border-2 mb-3 md:mb-5 w-full">
                                 <img class="w-full p-1" src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/@(champion.id)_@(skin.num).jpg" alt="@skin.name" />
                             </div>
-                            <p class="text-center uppercase">@(skin.name == "default" ? champion.name : skin.name)</p>
+                            <p class="text-center uppercase text-sm md:text-base">@(skin.name == "default" ? champion.name : skin.name)</p>
                         </li>
                     }
                 </ul>
@@ -154,7 +154,6 @@
         </section>
     }
 </div>
-
 
 <script>
     function activateSpell(element) {
@@ -189,6 +188,4 @@
 
         element.classList.add('active-skin');
     }
-
-
 </script>

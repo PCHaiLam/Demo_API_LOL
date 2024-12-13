@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|c:\\users\\admin\\documents\\github\\demo_api_lol\\views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|solutionrelative:views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|c:\\users\\admin\\documents\\github\\demo_api_lol\\views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|solutionrelative:views\\home\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A9269A82-6B48-4F74-9246-1B363382EECB}|Demo_API_LOL.csproj|C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,26 +58,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAxAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAkAAABXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-02T14:50:18.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\Views\\Home\\Detail.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Detail.cshtml",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\Views\\Home\\Detail.cshtml",
               "RelativeToolTip": "Views\\Home\\Detail.cshtml",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAAAFIAAAAkAAAA",
+              "ViewState": "AQIAAI8AAAAAAAAAAAAIwJ4AAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-01T13:17:01.573Z",
               "EditorCaption": ""
@@ -90,7 +90,7 @@
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\Demo_API_LOL\\Controllers\\HomeController.cs",
               "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAAAEIAAAAhAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAB9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-01T05:26:45.168Z"
             }
